@@ -20,7 +20,7 @@ class PublicationFactory extends Factory
             'title' => fake()->sentence(),
             'description' => fake()->realText(200),
             'image_url' => fake()->imageUrl(),
-            'user_id' =>fake()
+            'user_id' => \App\Models\User::inRandomOrder()->first()?->id ?? 1
         ];
     }
 }

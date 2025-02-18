@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicationController;
+use App\Models\Publication;
 
-use App\Http\Controllers\ExperienceController;
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::resource('experiences', ExperienceController::class);
+Route::resource('publication', PublicationController::class);

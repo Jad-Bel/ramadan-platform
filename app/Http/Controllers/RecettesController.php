@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\recettes;
+use App\Models\Recettes;
 use Illuminate\Http\Request;
 
 class RecettesController extends Controller
@@ -34,7 +34,7 @@ class RecettesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(recettes $recettes)
+    public function show(Recettes $recettes)
     {
         //
     }
@@ -42,7 +42,7 @@ class RecettesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(recettes $recettes)
+    public function edit(Recettes $recettes)
     {
         //
     }
@@ -50,7 +50,7 @@ class RecettesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, recettes $recettes)
+    public function update(Request $request, Recettes $recettes)
     {
         //
     }
@@ -58,7 +58,7 @@ class RecettesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(recettes $recettes)
+    public function destroy(Recettes $recettes)
     {
         //
     }

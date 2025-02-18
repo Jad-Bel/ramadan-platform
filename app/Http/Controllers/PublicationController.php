@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\publication;
+use App\Models\Publication;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
@@ -12,7 +12,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        //
+        return view('publication.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class PublicationController extends Controller
      */
     public function create()
     {
-        //
+        return view('publication.create');
     }
 
     /**
@@ -34,23 +34,23 @@ class PublicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(publication $publication)
+    public function show(Publication $publication)
     {
-        //
+        return view('publication.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(publication $publication)
+    public function edit(Publication $publication)
     {
-        //
+        return view('publication.edit');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, publication $publication)
+    public function update(Request $request, Publication $publication)
     {
         //
     }
@@ -58,7 +58,7 @@ class PublicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(publication $publication)
+    public function destroy(Publication $publication)
     {
         //
     }

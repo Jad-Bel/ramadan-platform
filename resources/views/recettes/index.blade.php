@@ -78,19 +78,17 @@
             </div>
         </div>
 
-        <!-- recettes Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- recettes Card  -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($recettes as $recettes)
-                <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="{{ $recettes->image_url ?? '/api/placeholder/400/250' }}" alt="{{ $recettes->title }}" class="w-full h-48 object-cover">
+                <a href="/recettes/{{ $recettes->id_recettes }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="{{ $recettes->image_url }}" alt="{{ $recettes->title }}" class="w-full h-48 object-cover">
                     <div class="p-4">
                         <div class="flex items-center justify-between mb-2">
-                            <span class="px-3 py-1 bg-emerald-100 text-emerald-600 rounded-full text-sm">{{ $recettes->categorie->name }}</span>
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-600 rounded-full text-sm">{{ $recettes->categorie->name ?? 'Uncategorized' }}</span>
                             <div class="flex items-center space-x-1 text-amber-400">
                                 <i class="fas fa-star"></i>
-                                <span class="text-gray-600">4.8</span>
+                                <span class="text-gray-600">4.8</span> <!-- Static rating for now -->
                             </div>
                         </div>
                         <h3 class="text-xl font-semibold mb-2">{{ $recettes->title }}</h3>
@@ -114,8 +112,7 @@
                     </div>
                 </article>
                 @endforeach
-            </div>
-        </div>
+            </a>
 
         <!-- Load More Button -->
         <div class="text-center mt-8">

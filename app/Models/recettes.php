@@ -31,6 +31,8 @@ class Recettes extends Model
 
     public function categorie()
     {
-        return $this->belongsTo(Categories::class, 'categorie_id');
+        return $this->belongsTo(Categories::class, 'categorie_id', 'categorie_id');
     }
+
+
 }

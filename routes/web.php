@@ -12,7 +12,7 @@ use App\Models\Recettes;
 Route::get('/', [PublicationController::class, 'index']);
 // Route::get('recette', [RecettesController::class, 'index']);
 Route::get('/recettes', [RecettesController::class, 'index']);
-Route::get('/recettes/{id}', [RecettesController::class, 'show']);
+Route::get('/recettes/show', [RecettesController::class, 'show']);
 // Route::get('/recettes', function () {
 //     return view('recettes');
 // });

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Recettes;
 
 class Categories extends Model
 {
@@ -14,4 +15,9 @@ class Categories extends Model
     protected $fillable = [
         'categorie_name'
     ];
+
+    public function recipes()
+    {
+        return $this->hasMany(Recettes::class, 'categorie_id', 'categorie_id');
+    }
 }

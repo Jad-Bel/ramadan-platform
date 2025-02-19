@@ -12,7 +12,11 @@ class RecettesController extends Controller
      */
     public function index()
     {
-        return view('recettes.index');
+
+        $recettes = Recettes::with('categorie')->paginate(6);
+
+        // dd($recettes);
+        return view('recettes.index', compact('recettes'));
     }
 
     /**
@@ -36,7 +40,7 @@ class RecettesController extends Controller
      */
     public function show(Recettes $recettes)
     {
-        return view('recettes.show', compact('recette'));
+        return view('recettes.show');
     }
 
     /**

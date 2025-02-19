@@ -38,9 +38,10 @@ class RecettesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Recettes $recettes)
+    public function show(int $id)
     {
-        return view('recettes.show');
+        $recettes = Recettes::with('user', 'categorie')->findOrFail($id);
+        return view('recettes.show', compact('recettes'));
     }
 
     /**

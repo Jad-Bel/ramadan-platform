@@ -12,7 +12,7 @@ class RecettesController extends Controller
      */
     public function index()
     {
-        //
+        return view('recettes.pubs');
     }
 
     /**

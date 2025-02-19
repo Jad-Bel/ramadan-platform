@@ -13,7 +13,7 @@ class PublicationController extends Controller
     public function index()
     {
     $publications = Publication::all();
-        return view('publication.index', compact('publications'));
+        return view('home', compact('publications'));
     }
 
     /**

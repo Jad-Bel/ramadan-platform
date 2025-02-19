@@ -12,7 +12,8 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        //
+        $commentaires = Commentaire::all();
+        return view();
     }
 
     /**

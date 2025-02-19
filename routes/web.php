@@ -6,12 +6,13 @@ use App\Http\Controllers\RecettesController;
 use App\Models\Publication;
 use App\Models\Recettes;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('publication', [PublicationController::class, 'index']);
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [PublicationController::class, 'index']);
 // Route::get('recette', [RecettesController::class, 'index']);
-// Route::get('/recettes', [RecettesController::class, 'index']);
-Route::get('/recettes', function () {
-    return view('recettes');
-});
+Route::get('/recettes', [RecettesController::class, 'index']);
+Route::get('/recettes/{id}', [RecettesController::class, 'show']);
+// Route::get('/recettes', function () {
+//     return view('recettes');
+// });

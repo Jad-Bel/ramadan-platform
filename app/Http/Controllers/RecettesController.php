@@ -12,7 +12,7 @@ class RecettesController extends Controller
      */
     public function index()
     {
-        return view('recettes.pubs');
+        return view('recettes.index');
     }
 
     /**
@@ -36,7 +36,7 @@ class RecettesController extends Controller
      */
     public function show(Recettes $recettes)
     {
-        //
+        return view('recettes.show', compact('recette'));
     }
 
     /**

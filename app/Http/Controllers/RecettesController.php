@@ -54,7 +54,7 @@ class RecettesController extends Controller
         // dd($validateData);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('recipes', 'public');
+            $imagePath = $request->file('image')->store('recettes', 'public');
             $validateData['image'] = $imagePath;
         }
 

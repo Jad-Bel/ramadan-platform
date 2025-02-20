@@ -13,7 +13,7 @@ class PublicationController extends Controller
     public function index()
     {
     $publications = Publication::all();
-        return view('home', compact('publications'));
+        return view('publication.index', compact('publications'));
     }
 
     /**
@@ -21,7 +21,7 @@ class PublicationController extends Controller
      */
     public function create()
     {
-        return view('publication.create');
+        //
     }
 
     /**
@@ -29,7 +29,21 @@ class PublicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'user_id' => 'required|exists:users,user_id',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('publication', 'public');
+            $validateData['image_url'] = $imagePath;
+        }
+
+        Publication::create($validateData);
+
+        return redirect()->route('publication.index')->with('success', 'Experience shared successfully!');
     }
 
     /**

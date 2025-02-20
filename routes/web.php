@@ -9,7 +9,8 @@ use App\Models\Recettes;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [PublicationController::class, 'index']);
+Route::get('/', [PublicationController::class, 'index'])->name('publication.index');
+Route::post('/publication', [PublicationController::class, 'store'])->name('publication.store');
 // Route::get('recette', [RecettesController::class, 'index']);
 Route::get('/recettes', [RecettesController::class, 'index'])->name('recettes.index');
 Route::get('/recettes/{id}', [RecettesController::class, 'show']);

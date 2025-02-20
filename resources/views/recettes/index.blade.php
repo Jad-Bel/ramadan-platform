@@ -1,52 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('layouts.navbar')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramad-On - recettes Collection</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-</head>
-<style>
-    .recettes-card-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .recettes-card-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-</style>
-
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-emerald-600 text-white shadow-lg flex items-center">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-moon text-2xl"></i>
-                    <span class="text-2xl font-bold">Ramad-On</span>
-                </div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="/" class="hover:text-emerald-200">Home</a>
-                    <a href="#" class="hover:text-emerald-200">Experiences</a>
-                    <a href="#" class="text-emerald-200">recettes</a>
-                    <a href="#" class="hover:text-emerald-200">Profile</a>
-                </div>
-                <div class="text-center ">
-                    <button class="px-6 py-3 bg-white text-emerald-600 rounded-lg hover:bg-gray-200 transition-colors">
-                        Add New recettes
-                    </button>
-                </div>
-                <button class="md:hidden">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
 
 
 
@@ -90,7 +43,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($recettes as $recette)
             <a href="/recettes/{{ $recette->id_recettes }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="{{ $recette->image_url }}" alt="{{ $recette->title }}" class="w-full h-48 object-cover">
+                <img src="{{ asset('storage/' . $recette->image_url) }}" alt="{{ $recette->title }}" class="w-full h-48 object-cover">
                 <div class="p-4">
                     <div class="flex items-center justify-between mb-2">
                         <span class="px-3 py-1 bg-emerald-100 text-emerald-600 rounded-full text-sm">{{ $recette->categorie->name ?? 'Uncategorized' }}</span>
@@ -149,15 +102,31 @@
                     {{-- <input type="number" name="categorie_id" value="1" hidden> <!-- Ensure this exists --> --}}
 
                     <!-- recettes Image Upload -->
-                    <div class="mb-6">
+                    {{-- <div class="mb-6">
                         <div
                             class="border-2 border-dashed border-emerald-200 rounded-lg p-8 text-center hover:border-emerald-300 transition-colors">
                             <i class="fas fa-camera text-4xl text-emerald-500 mb-2"></i>
                             <p class="text-gray-600">Upload your dish photo</p>
                             <p class="text-sm text-gray-500 mt-1">Click to upload or drag and drop</p>
                         </div>
+                    </div> --}}
+                    <div class="relative mb-4">
+                        <input type="file" name="image_url" id="image" accept="image/*" class="hidden">
+                        <label for="image"
+                            class="flex items-center justify-center w-full p-4 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-emerald-500 transition-colors duration-300">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                                    viewBox="0 0 48 48">
+                                    <path
+                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <div class="mt-2 text-sm text-gray-600">
+                                    Click to upload an image
+                                </div>
+                            </div>
+                        </label>
                     </div>
-
                     <!-- Basic Info Section -->
                     <div class="space-y-4 mb-6">
                         <input type="text" name="title" placeholder="recettes Title"
@@ -249,60 +218,4 @@
         </div>
     </div>
 
-    <script>
-        // Select elements
-        const addrecettesButton = document.querySelector('button.bg-white.text-emerald-600');
-        const modal = document.querySelector('.modalForm');
-        const closeModalButton = modal.querySelector('button.text-white.hover\\:text-emerald-100');
-
-        // Show modal with GSAP animation
-        addrecettesButton.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-            gsap.fromTo(modal, {
-                opacity: 0
-            }, {
-                opacity: 1,
-                duration: 0.3
-            });
-            gsap.fromTo(modal.querySelector('.bg-white.rounded-xl.shadow-xl'), {
-                y: 50,
-                opacity: 0
-            }, {
-                y: 0,
-                opacity: 1,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        });
-
-        // Hide modal with GSAP animation
-        closeModalButton.addEventListener('click', () => {
-            gsap.to(modal, {
-                opacity: 0,
-                duration: 0.3,
-                onComplete: () => modal.classList.add('hidden')
-            });
-        });
-
-        // Optional: Hover effects for recettes cards
-        const recettesCards = document.querySelectorAll('.bg-white.rounded-lg.shadow-md');
-        recettesCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                gsap.to(card, {
-                    scale: 1.02,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-            card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                    scale: 1,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-        });
-    </script>
-</body>
-
-</html>
+    @include('layouts.footer')

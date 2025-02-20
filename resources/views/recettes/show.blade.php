@@ -37,7 +37,7 @@
         <!-- recettes Card -->
         <article class="bg-white rounded-lg shadow-md overflow-hidden max-w-4xl mx-auto p-4">
             <!-- recettes Header -->
-            <img src="{{ $recettes->image_url ?? '/api/placeholder/800/400' }}" alt="{{ $recettes->title }}"
+            <img src="{{ asset('storage/' . $recettes->image_url) }}" alt="{{ $recettes->title }}"
                 class="w-full h-64 object-cover">
 
             <div class="p-6">
@@ -58,15 +58,15 @@
                 <div class="flex space-x-6 mb-6 text-sm text-gray-500">
                     <div class="flex items-center">
                         <i class="far fa-clock mr-2"></i>
-                        <span>Prep: 30 mins</span> <!-- Static for now -->
+                        <span>Prep: {{ $recettes->prep_time }} mins</span> <!-- Static for now -->
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-fire mr-2"></i>
-                        <span>Cook: 1 hour</span> <!-- Static for now -->
+                        <span>Cook:  {{ $recettes->cook_time }} mins</span> <!-- Static for now -->
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-users mr-2"></i>
-                        <span>Serves: 6</span> <!-- Static for now -->
+                        <span>Serves:  {{ $recettes->servings }}</span> <!-- Static for now -->
                     </div>
                 </div>
 

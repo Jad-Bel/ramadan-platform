@@ -12,8 +12,14 @@ class PublicationController extends Controller
      */
     public function index()
     {
-    $publications = Publication::all();
+    $publications = Publication::paginate(5);
         return view('publication.index', compact('publications'));
+    }
+
+    public function Experiences()
+    {
+        $publications = Publication::paginate(5);
+        return view('publication.experiences', compact('publications'));
     }
 
     /**
@@ -36,11 +42,14 @@ class PublicationController extends Controller
             'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('publication', 'public');
+        if ($request->hasFile('image_url')) {
+            $imagePath = $request->file('image_url')->store('publication', 'public');
             $validateData['image_url'] = $imagePath;
+            // dd($imagePath);
         }
+        // dd($request->hasFile('image'));
 
+        // dd($validateData);
         Publication::create($validateData);
 
         return redirect()->route('publication.index')->with('success', 'Experience shared successfully!');
@@ -49,9 +58,10 @@ class PublicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Publication $publication)
+    public function show($id)
     {
-        return view('publication.show');
+        $publication = Publication::findOrFail($id);
+        return view('publication.show', compact('publication'));
     }
 
     /**

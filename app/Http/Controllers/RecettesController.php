@@ -53,9 +53,9 @@ class RecettesController extends Controller
         // dd($request->all());
         // dd($validateData);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('recettes', 'public');
-            $validateData['image'] = $imagePath;
+        if ($request->hasFile('image_url')) {
+            $imagePath = $request->file('image_url')->store('recettes', 'public');
+            $validateData['image_url'] = $imagePath;
         }
 
         Recettes::create($validateData);

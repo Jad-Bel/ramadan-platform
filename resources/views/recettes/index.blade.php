@@ -88,41 +88,44 @@
 
         <!-- recettes Card  -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($recettes as $recettes)
-                <a href="/recettes/{{ $recettes->id_recettes }}"
-                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="{{ $recettes->image_url }}" alt="{{ $recettes->title }}" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex items-center justify-between mb-2">
-                            <span
-                                class="px-3 py-1 bg-emerald-100 text-emerald-600 rounded-full text-sm">{{ $recettes->categorie->name ?? 'Uncategorized' }}</span>
-                            <div class="flex items-center space-x-1 text-amber-400">
-                                <i class="fas fa-star"></i>
-                                <span class="text-gray-600">4.8</span> <!-- Static rating for now -->
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">{{ $recettes->title }}</h3>
-                        <p class="text-gray-600 mb-4 line-clamp-2">{{ $recettes->description }}</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="/api/placeholder/32/32" alt="Chef avatar" class="rounded-full">
-                                <span class="text-sm text-gray-600">{{ $recettes->user->name }}</span>
-                            </div>
-                            <div class="flex items-center space-x-4 text-gray-500">
-                                <span class="flex items-center space-x-1">
-                                    <i class="far fa-heart"></i>
-                                    <span>245</span> <!-- Static likes for now -->
-                                </span>
-                                <span class="flex items-center space-x-1">
-                                    <i class="far fa-comment"></i>
-                                    <span>56</span> <!-- Static comments for now -->
-                                </span>
-                            </div>
+            @foreach ($recettes as $recette)
+            <a href="/recettes/{{ $recette->id_recettes }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <img src="{{ $recette->image_url }}" alt="{{ $recette->title }}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-600 rounded-full text-sm">{{ $recette->categorie->name ?? 'Uncategorized' }}</span>
+                        <div class="flex items-center space-x-1 text-amber-400">
+                            <i class="fas fa-star"></i>
+                            <span class="text-gray-600">4.8</span> <!-- Static rating for now -->
                         </div>
                     </div>
-                    </article>
-            @endforeach
+                    <h3 class="text-xl font-semibold mb-2">{{ $recette->title }}</h3>
+                    <p class="text-gray-600 mb-4 line-clamp-2">{{ $recette->description }}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <img src="/api/placeholder/32/32" alt="Chef avatar" class="rounded-full">
+                            <span class="text-sm text-gray-600">{{ $recette->user->name }}</span>
+                        </div>
+                        <div class="flex items-center space-x-4 text-gray-500">
+                            <span class="flex items-center space-x-1">
+                                <i class="far fa-heart"></i>
+                                <span>245</span> <!-- Static likes for now -->
+                            </span>
+                            <span class="flex items-center space-x-1">
+                                <i class="far fa-comment"></i>
+                                <span>56</span> <!-- Static comments for now -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </a>
+            @endforeach
+        </div>
+
+        <!-- Pagination Links -->
+        <div class="space-x-2 mt-12 text-xs">
+            {{ $recettes->links() }}
+        </div>
     </main>
 
     <div class="modalForm fixed inset-0 flex items-center justify-center drop-shadow-xl p-4 hidden">

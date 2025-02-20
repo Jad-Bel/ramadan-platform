@@ -21,7 +21,12 @@ class Recettes extends Model
         'instructions',
         'image_url',
         'user_id',
-        'categorie_id'
+        'categorie_id',
+        'meal_type',
+        'prep_time',
+        'cook_time',
+        'servings',
+        'additional_notes'
     ];
 
     public function user()

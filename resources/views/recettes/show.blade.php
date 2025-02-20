@@ -22,7 +22,7 @@
                 <div class="hidden md:flex space-x-6">
                     <a href="/" class="hover:text-emerald-200">Home</a>
                     <a href="#" class="hover:text-emerald-200">Experiences</a>
-                    <a href="recettes" class="hover:text-emerald-200">recettess</a>
+                    <a href="/recettes" class="hover:text-emerald-200">recettess</a>
                     <a href="#" class="hover:text-emerald-200">Profile</a>
                 </div>
                 <button class="md:hidden">

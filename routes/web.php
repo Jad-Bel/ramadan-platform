@@ -11,8 +11,9 @@ use App\Models\Recettes;
 // });
 Route::get('/', [PublicationController::class, 'index']);
 // Route::get('recette', [RecettesController::class, 'index']);
-Route::get('/recettes', [RecettesController::class, 'index']);
+Route::get('/recettes', [RecettesController::class, 'index'])->name('recettes.index');
 Route::get('/recettes/{id}', [RecettesController::class, 'show']);
+Route::post('/recettes/store', [RecettesController::class, 'store'])->name('recettes.store');
 // Route::get('/recettes', function () {
 //     return view('recettes');
 // });

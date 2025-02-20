@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recettes;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 class RecettesController extends Controller
@@ -24,7 +25,7 @@ class RecettesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -32,7 +33,34 @@ class RecettesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $validateData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'ingredients' => 'required|string',
+            'instructions' => 'required|string',
+            'image_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'user_id' => 'required|exists:users,user_id',
+            'categorie_id' => 'required|exists:categories,categorie_id',
+            'meal_type' => 'required|in:iftar,suhoor,other',
+            'prep_time' => 'nullable|integer|min:1',
+            'cook_time' => 'nullable|integer|min:1',
+            'servings' => 'nullable|integer|min:1',
+            'additional_notes' => 'nullable|string',
+        ]);
+
+        // dd($request->all());
+        // dd($validateData);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('recipes', 'public');
+            $validateData['image'] = $imagePath;
+        }
+
+        Recettes::create($validateData);
+
+        return redirect()->route('recettes.index')->with('success', 'Recipe added successfully!');
     }
 
     /**

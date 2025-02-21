@@ -16,4 +16,14 @@ class Publication extends Model
         'user_id',
         'image_url'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'pub_id');
+    }
 }

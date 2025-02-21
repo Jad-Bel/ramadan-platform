@@ -60,7 +60,9 @@ class PublicationController extends Controller
      */
     public function show($id)
     {
-        $publication = Publication::findOrFail($id);
+        $publication = Publication::with(['user', 'commentaires.user'])->findOrFail($id);
+
+        // dd($publication);
         return view('publication.show', compact('publication'));
     }
 

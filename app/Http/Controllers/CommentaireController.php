@@ -29,8 +29,19 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'content' => 'required|string|max:500',
+            'pub_id' => 'required|exists:publications,pub_id',
+            'user_id' => 'required|exists:users,user_id',
+        ]);
+
+        
+
+        Commentaire::create($validateData);
+
+        return redirect()->back()->with('success', 'Comment posted successfully!');
     }
+
 
     /**
      * Display the specified resource.

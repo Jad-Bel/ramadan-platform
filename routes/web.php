@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\RecettesController;
+use App\Http\Controllers\CommentaireController;
 // use App\Models\Publication;
 // use App\Models\Recettes;
 
@@ -17,3 +18,7 @@ Route::get('/publication/{id}', [PublicationController::class, 'show'])->name('p
 Route::get('/recettes', [RecettesController::class, 'index'])->name('recettes.index');
 Route::get('/recettes/{id}', [RecettesController::class, 'show']);
 Route::post('/recettes/store', [RecettesController::class, 'store'])->name('recettes.store');
+
+// comments routes
+Route::post('/comment', [CommentaireController::class, 'store'])->name('comment.store');
+

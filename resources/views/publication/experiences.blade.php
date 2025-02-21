@@ -8,7 +8,7 @@
     <!-- Publications Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($publications as $publication)
-        <a href="/publication/{{ $publication->pub_id }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="/publications/{{ $publication->pub_id }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
             <!-- Publication Image -->
             @if ($publication->image_url)
             <img src="{{ asset('storage/' . $publication->image_url) }}" alt="{{ $publication->title }}" class="w-full h-48 object-cover">

@@ -39,17 +39,6 @@
             ease: 'power2.out'
         });
 
-        // Counter animation
-        gsap.to('#counter', {
-            innerHTML: 2847,
-            duration: 2,
-            delay: 1,
-            snap: {
-                innerHTML: 1
-            },
-            ease: 'power1.out'
-        });
-
         // Hover animations for recipe cards
         document.querySelectorAll('.recipe-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -119,25 +108,6 @@
                 opacity: 0,
                 duration: 0.3,
                 onComplete: () => modal.classList.add('hidden')
-            });
-        });
-
-        // Optional: Hover effects for recettes cards
-        const recettesCards = document.querySelectorAll('.bg-white.rounded-lg.shadow-md');
-        recettesCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                gsap.to(card, {
-                    scale: 1.02,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-            card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                    scale: 1,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
             });
         });
 </script>

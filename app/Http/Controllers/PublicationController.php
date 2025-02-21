@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publication;
+use App\Models\Recettes;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
@@ -13,13 +14,27 @@ class PublicationController extends Controller
     public function index()
     {
     $publications = Publication::paginate(5);
-        return view('publication.index', compact('publications'));
+    $totals = $this->getTotals();
+
+        return view('publication.index', compact('publications', 'totals'));
     }
 
     public function Experiences()
     {
         $publications = Publication::paginate(5);
         return view('publication.experiences', compact('publications'));
+    }
+
+    public function getTotals()
+    {
+        $totalPublications = Publication::count();
+        $totalRecipes = Recettes::count();
+
+        // return the totals as a n object
+        return (object) [
+            'total_publications' => $totalPublications,
+            'total_recipes' => $totalRecipes,
+        ];
     }
 
     /**

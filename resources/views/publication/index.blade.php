@@ -67,7 +67,7 @@
         <div class="grid md:grid-cols-2 gap-6">
             <!-- Total Posts Card -->
             <div class="bg-white rounded-lg shadow p-6 opacity-0 scale-hover" id="statsCard">
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Platform Statistics</h2>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Total Posts</h2>
                 <div class="flex items-center space-x-4">
                     <div class="bg-emerald-100 p-4 rounded-full">
                         <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,13 +77,31 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-gray-500">Total Posts</p>
-                        <p class="text-3xl font-bold text-gray-800" id="counter">0</p>
+                        {{-- <p class="text-gray-500">Total Posts</p> --}}
+                        <p class="text-3xl font-bold text-gray-800" id="counter">{{ $totals->total_publications }}</p>
                     </div>
                 </div>
+
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 opacity-0 scale-hover" id="statsCard">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Total recettes</h2>
+                <div class="flex items-center space-x-4">
+                    <div class="bg-emerald-100 p-4 rounded-full">
+                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        {{-- <p class="text-gray-500">Total Posts</p> --}}
+                        <p class="text-3xl font-bold text-gray-800" id="counter">{{ $totals->total_recipes }}</p>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Popular Recipes Card -->
+            {{-- <!-- Popular Recipes Card -->
             <div class="bg-white rounded-lg shadow p-6 opacity-0" id="recipesCard">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Popular Recipes</h2>
                 <div class="space-y-4">
@@ -124,7 +142,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

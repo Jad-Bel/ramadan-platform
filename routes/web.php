@@ -12,7 +12,7 @@ use App\Http\Controllers\CommentaireController;
 Route::get('/', [PublicationController::class, 'index'])->name('publication.index');
 Route::post('/publish', [PublicationController::class, 'store'])->name('publication.store');
 Route::get('/publication', [PublicationController::class, 'Experiences'])->name('publication.Experiences');
-Route::get('/publication/{id}', [PublicationController::class, 'show'])->name('publication.show');
+Route::get('/publications/{id}', [PublicationController::class, 'show'])->name('publication.show');
 
 // recettes routes
 Route::get('/recettes', [RecettesController::class, 'index'])->name('recettes.index');

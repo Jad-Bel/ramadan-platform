@@ -120,7 +120,7 @@
                 </ol>
             </div>
 
-            <!-- Engagement Stats -->
+            {{-- <!-- Engagement Stats -->
             <div class="flex space-x-6 border-t border-b border-gray-200 py-4 mb-6">
                 <button class="flex items-center space-x-2 text-gray-500 hover:text-emerald-600">
                     <i class="far fa-heart"></i>
@@ -188,7 +188,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </section>
             </div>
         </article>

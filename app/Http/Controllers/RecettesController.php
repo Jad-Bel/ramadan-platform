@@ -5,19 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\Recettes;
 use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
+use App\Models\Categories;
 
 class RecettesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $recettes = Recettes::with('categorie')->paginate(6);
+        // dd([
+        //     'categorieId' => $request->input('categorie_id'),
+        //     'mealType' => $request->input('meal_type'),
+        // ]);
 
+        $categorie_id = $request->input('categorie_id');
+        $meal_type = $request->input('meal_type');
+        $recettes = Recettes::with('categorie')
+        ->when($categorie_id, function ($query, $categorie_id) {
+            return $query->where('categorie_id', (int) $categorie_id);
+        })
+        ->when($meal_type, function ($query, $meal_type) {
+            return $query->where('meal_type', $meal_type);
+        })
+        ->paginate(6)
+        ->appends($request->query());
+
+        $categories = Categories::all();
         // dd($recettes);
-        return view('recettes.index', compact('recettes'));
+        // dd($recettes);
+        return view('recettes.index', compact('recettes', 'categories'));
     }
 
     /**
